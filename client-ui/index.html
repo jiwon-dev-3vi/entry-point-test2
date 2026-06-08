@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nested Entry Test UI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>client-ui</h1>
+      <p class="subtitle">CASE 2: 얕은 웹 루트 · 깊은 API 진입점</p>
+
+      <section class="card">
+        <h2>API 상태</h2>
+        <div class="status-row">
+          <span id="health-badge" class="badge">확인 중…</span>
+          <button type="button" id="refresh-btn" class="secondary">새로고침</button>
+        </div>
+        <p id="health-detail" class="muted">백엔드 연결을 확인하는 중입니다.</p>
+      </section>
+
+      <section class="card">
+        <h2>할 일 목록</h2>
+        <form id="item-form">
+          <input id="item-input" type="text" placeholder="새 항목 입력" autocomplete="off" />
+          <button type="submit">추가</button>
+        </form>
+        <ul id="item-list">
+          <li class="empty">불러오는 중…</li>
+        </ul>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "shared-lib-decoy",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Decoy package.json at depth 2 (not the WAS entry root)"
+}
