@@ -10,7 +10,7 @@ nested-entry-monorepo/
 │   ├── index.html
 │   ├── app.js
 │   └── styles.css
-├── workspace/services/api-server/          # WAS 실제 진입점 (깊은 경로)
+├── workspace/api-server/                   # WAS 실제 진입점 (깊은 경로)
 │   ├── package.json                        # 실제 start 스크립트
 │   └── src/
 │       ├── server.js                       # entry 파일
@@ -31,15 +31,15 @@ nested-entry-monorepo/
 | 경로 | 역할 |
 |------|------|
 | `client-ui/` | 웹 루트이지만 **`package.json`이 없음** (정적 HTML만) |
-| `workspace/services/api-server/package.json` | **실제 WAS 진입점** (`npm start` → `src/server.js`) |
+| `workspace/api-server/package.json` | **실제 WAS 진입점** (`npm start` → `src/server.js`) |
 | `packages/shared-lib/package.json` | 공유 라이브러리 폴더에 있는 **가짜 루트** — 코드는 있지만 start 스크립트 없음 |
 | `tools/maintenance/helper/package.json` | 깊이 4에 있는 **또 다른 가짜 루트** |
 
-도구가 단순히 “가장 가까운 `package.json`”이나 “첫 번째로 찾은 `package.json`”을 루트로 잡으면, 실제 서버 진입점(`workspace/services/api-server`) 대신 `packages/`나 `tools/` 쪽을 잘못 선택할 수 있습니다.
+도구가 단순히 “가장 가까운 `package.json`”이나 “첫 번째로 찾은 `package.json`”을 루트로 잡으면, 실제 서버 진입점(`workspace/api-server`) 대신 `packages/`나 `tools/` 쪽을 잘못 선택할 수 있습니다.
 
 decoy는 **의도적인 함정**입니다. 올바른 도구라면:
 
-- WAS 진입점 → `workspace/services/api-server/package.json`
+- WAS 진입점 → `workspace/api-server/package.json`
 - 웹 루트 → `client-ui/index.html` (또는 `client-ui/`)
 - `packages/shared-lib/package.json` → 의존성 설치 루트가 **아님**
 
@@ -47,7 +47,7 @@ decoy는 **의도적인 함정**입니다. 올바른 도구라면:
 
 ## 기능
 
-### 백엔드 (`workspace/services/api-server`)
+### 백엔드 (`workspace/api-server`)
 
 - `GET /health` — 헬스체크 (shared-lib 사용)
 - `GET /api/items` — 할 일 목록
@@ -64,8 +64,8 @@ decoy는 **의도적인 함정**입니다. 올바른 도구라면:
 ## 실행
 
 ```bash
-# 1. API 서버 (진입점: workspace/services/api-server)
-cd workspace/services/api-server
+# 1. API 서버 (진입점: workspace/api-server)
+cd workspace/api-server
 npm start
 
 # 2. 프론트 (별도 터미널, 정적 서버 아무거나)
@@ -78,7 +78,7 @@ npx --yes serve .
 
 ## 검증 포인트
 
-1. **WAS 진입점**이 `workspace/services/api-server`로 잡히는가?
+1. **WAS 진입점**이 `workspace/api-server`로 잡히는가?
 2. **웹 루트**가 `client-ui`로 잡히는가?
 3. `packages/shared-lib/package.json`이나 `tools/.../package.json`을 루트로 **오인하지 않는가?**
 

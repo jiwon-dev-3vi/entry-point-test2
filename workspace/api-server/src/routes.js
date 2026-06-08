@@ -1,9 +1,9 @@
 'use strict';
 
-const { buildHealthPayload } = require('../../../../packages/shared-lib/src/index.js');
+const { buildHealthPayload } = require('../../../packages/shared-lib/src/index.js');
 const store = require('./store');
 
-const ENTRY = 'workspace/services/api-server/src/server.js';
+const ENTRY = 'workspace/api-server/src/server.js';
 
 function sendJson(res, status, body) {
   res.writeHead(status, {
